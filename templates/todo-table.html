@@ -1,0 +1,17 @@
+{{define "todo-table"}}
+<table id="todos-table" class="w-full">
+    <thead>
+        <tr class="border-b">
+            <th class="h-12 px-4 text-left align-middle font-medium">Id</th>
+            <th class="h-12 px-4 text-left align-middle font-medium">Title</th>
+            <th class="h-12 px-4 text-left align-middle font-medium">Date</th>
+            <th class="h-12 px-4 text-left align-middle font-medium">Done</th>
+        </tr>
+    </thead>
+    <tbody id="todos-body" class="[&amp;_tr:last-child]:border-0">
+        {{range .Todos}}
+            {{template "todo-row" .}}
+        {{end}}
+    </tbody>
+</table>
+{{end}}

@@ -1,0 +1,15 @@
+{{define "aside"}}
+<aside class="sticky top-0 h-screen w-56 bg-gray-100 text-gray-800 p-4">
+    <div class="flex items-center mb-4 space-x-1">
+        <img src="/static/checklist.png" width="32" height="32" alt="Todo list logo">
+        <h1 class="text-lg font-medium">Todo</h1>
+    </div>
+    <nav class="space-y-2">
+        <button hx-get="/home" hx-target="#main" hx-swap="outerHTML"
+                class="w-full flex items-center space-x-2 bg-gray-200 active:bg-gray-300 py-2 px-2 rounded-lg text-gray-800">
+            <img src="/static/icons/home.svg" alt="home icon"/>
+            <span class="text-sm font-medium">Home</span>
+        </button>
+    </nav>
+</aside>
+{{end}}
