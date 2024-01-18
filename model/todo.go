@@ -7,6 +7,12 @@ type Todo struct {
 	Done  uint8  `json:"done"`
 }
 
+type TodoInput struct {
+	TodoId uint64
+	Name   string
+	Value  string
+}
+
 func CreateTodo(title string) (Todo, error) {
 	statement := `insert into todo(title, date, done) values($1,  DATETIME('now'), $2) returning id;`
 
@@ -90,6 +96,13 @@ func GetTodoById(id uint64) (Todo, error) {
 func SetTodoDone(id uint64, done uint8) error {
 	statement := `update todo set done=$2 where id=$1;`
 	_, err := db.Query(statement, id, done)
+
+	return err
+}
+
+func UpdateTodo(todo Todo) error {
+	statement := `update todo set title=$2, date=$3, done=$4 where id=$1;`
+	_, err := db.Query(statement, todo.Id, todo.Title, todo.Date, todo.Done)
 
 	return err
 }

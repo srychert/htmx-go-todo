@@ -1,10 +1,11 @@
 {{define "todo-row"}}
 <tr class="border-b transition-colors hover:bg-gray-100">
     <td class="p-4 align-middle font-medium">{{ .Id }}</td>
-    <td class="p-4 align-middle">{{ .Title }}</td>
-    <td class="p-4 align-middle">{{ .Date }}</td>
+    <td hx-target="this" hx-swap="outerHTML" hx-get="/edit-todo/" hx-headers='{ "X-Todo-Id": "{{ .Id }}", "X-Todo-Column": "title" }'
+         class="p-4 h-[40px] align-middle">{{ .Title }}</td>
+    <td class="p-4 align-middle whitespace-nowrap">{{ .Date }}</td>
     <td class="p-4 align-middle">
-        <input hx-put="/update-todo" hx-trigger="change" hx-headers='{ "X-Todo-Id": "{{ .Id }}" }'
+        <input hx-put="/mark-todo" hx-trigger="change" hx-headers='{ "X-Todo-Id": "{{ .Id }}" }'
                class="form-checkbox h-5 w-5 accent-gray-600" id="{{ .Id }}" type="checkbox" name="done"
                {{ if .Done }} checked {{end}}
         />

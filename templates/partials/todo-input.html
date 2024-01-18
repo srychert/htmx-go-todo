@@ -1,0 +1,11 @@
+{{define "todo-input"}}
+<td class="p-2 align-middle">
+    <input  hx-trigger="keyup[keyCode==13]" hx-get="/update-todo/" hx-target="closest tr" hx-swap="outerHTML"
+            hx-headers='{ "X-Todo-Id": "{{ .TodoId }}", "X-Todo-Column": "title" }'
+            name="{{ .Name }}" value="{{ .Value }}"
+            class="flex h-10 w-full rounded-md border border-input bg-background p-2 ring-offset-background focus:outline-none focus-visible:ring-ring focus:ring-offset-2"
+            placeholder="{{ .Name }}"
+            type="text"
+    />
+</td>
+{{end}}
